@@ -35,6 +35,23 @@ export class PuzzleGrid {
   }
 
   onPieceDragEnd(piece) {
+    const [ pieceToReplaceByMovedOne ] = this.pieces.filter((item) => {
+      return piece.config.id !== item.config.id &&
+        piece.sprite.x > item.left &&
+        piece.sprite.x < item.right &&
+        piece.sprite.y > item.top &&
+        piece.sprite.y < item.bottom;
+    });
+
+    if (pieceToReplaceByMovedOne) {
+      const pieceToReplaceConfig = pieceToReplaceByMovedOne.config;
+
+      pieceToReplaceByMovedOne.config = piece.config;
+      piece.config = pieceToReplaceConfig;
+
+      pieceToReplaceByMovedOne.reset();
+    }
+
     piece.reset();
   }
 }
