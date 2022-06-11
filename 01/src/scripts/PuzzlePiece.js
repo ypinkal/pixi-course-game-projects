@@ -74,4 +74,9 @@ export class PuzzlePiece extends PIXI.utils.EventEmitter {
   get right() {
     return this.sprite.x + this.sprite.width / 2;
   }
+
+  setConfig(config) {
+    this.config = config;
+    this.reset();
+  }
 }
