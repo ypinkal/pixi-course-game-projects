@@ -1,4 +1,6 @@
 import * as PIXI from "pixi.js";
+import TWEEN from "@tweenjs/tween.js";
+
 import { Loader } from "./Loader";
 import { MainScene } from "./MainScene";
 
@@ -14,6 +16,10 @@ export class App {
   }
 
   start(resources) {
+    this.app.ticker.add(() => {
+      TWEEN.update();
+    });
+
     console.log("Game Started");
     this.scene = new MainScene(resources);
 

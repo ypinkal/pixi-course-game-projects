@@ -1,4 +1,5 @@
 import * as PIXI from "pixi.js";
+import TWEEN from "@tweenjs/tween.js"
 
 export class PuzzlePiece extends PIXI.utils.EventEmitter {
   constructor(resources, id, config) {
@@ -59,10 +60,23 @@ export class PuzzlePiece extends PIXI.utils.EventEmitter {
   }
 
   reset() {
-    this.sprite.x = this.config.x;
-    this.sprite.y = this.config.y;
+    const tween = new TWEEN.Tween(this.sprite);
 
-    this.sprite.zIndex = 0;
+    tween.to({
+      x: this.config.x,
+      y: this.config.y
+    }, 300);
+
+    tween.onStart(() => {
+      this.sprite.zIndex = 1;
+    });
+    tween.onUpdate(() => {});
+    tween.onComplete(() => {
+      this.sprite.zIndex = 0;
+    });
+    tween.easing(TWEEN.Easing.Back.Out);
+    
+    tween.start();
   }
 
   get top() {
