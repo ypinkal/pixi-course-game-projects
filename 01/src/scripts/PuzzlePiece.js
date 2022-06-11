@@ -9,6 +9,10 @@ export class PuzzlePiece extends PIXI.utils.EventEmitter {
     this.sprite = new PIXI.Sprite(resources[`puzzle${id}`].texture);
     this.sprite.anchor.set(0.5);
     this.sprite.scale.set(0.5);
+
+    this.sounds = {
+      click: resources["click"]
+    }
     
     this.reset();    
 
@@ -32,6 +36,8 @@ export class PuzzlePiece extends PIXI.utils.EventEmitter {
       x: e.data.global.x,
       y: e.data.global.y,
     }
+
+    this.sounds.click.sound.play();
   }
 
   onPointerMove(e) {

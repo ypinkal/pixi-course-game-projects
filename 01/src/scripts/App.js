@@ -17,6 +17,7 @@ export class App {
     console.log("Game Started");
     this.scene = new MainScene(resources);
 
+    console.log(resources);
     console.log(this.app);
     this.app.stage.addChild(this.scene.container);
   }

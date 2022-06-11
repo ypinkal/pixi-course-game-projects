@@ -7,6 +7,11 @@ export class MainScene {
 
     this.createBackground(resources);
     this.createPuzzleGrid(resources);
+
+    resources.music.sound.play({
+      loop: true,
+      volume: 0.15
+    });
   }
 
   createBackground(resources) {
